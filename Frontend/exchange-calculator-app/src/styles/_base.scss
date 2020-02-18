@@ -1,0 +1,23 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+
+    /* forcing inheritance for box-sizing */
+    box-sizing: inherit; 
+}
+
+html {
+    /* Defing 1rem => 0.625 * 16px = 10px (16px being browser default) */
+    font-size: 62.5%;
+}
+
+body {
+    /* element padding and border are included in the width and height */
+    box-sizing: border-box; 
+
+    min-height: 100vh;
+    overflow-y: scroll;
+    overflow-x: auto;
+}

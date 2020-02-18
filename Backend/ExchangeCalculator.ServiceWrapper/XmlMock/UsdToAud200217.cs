@@ -1,23 +1,9 @@
-﻿using ExchangeWrapper.SweaWS;
-using System.IO;
-using System.Text;
-using System.Xml.Serialization;
-
-namespace ExchangeCalculator.ServiceWrapper.XmlMock
+﻿namespace ExchangeCalculator.ServiceWrapper.XmlMock
 {
     internal class UsdToAud200217
     {
-        public static getCrossRatesResponse GetMockResponse()
-        {
-            var xmlSerializer = new XmlSerializer(typeof(getCrossRatesResponse));
-            var xml = GetXml();
-            var bytes = Encoding.UTF8.GetBytes(xml);
-            var stream = new MemoryStream(bytes);
-            return (getCrossRatesResponse)xmlSerializer.Deserialize(stream);
-        }
-
         // XML response collected from Swea WS
-        private static string GetXml()
+        public static string GetMockXml()
         {
             return @"<?xml version=""1.0"" encoding=""UTF-8""?>
     <getCrossRatesResponse namespace=""http://swea.riksbank.se/xsd"">

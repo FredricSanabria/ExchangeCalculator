@@ -16,8 +16,8 @@ namespace ExchangeCalculator.Application.UseCases
 
         public async Task<DtoConversion> ExecuteAsync(DateTime conversionDate, string fromCurrency, decimal originalAmount, string toCurrency)
         {
-            var conversionRate = await _repository.GetConversionRateAsync(fromCurrency, toCurrency, conversionDate);
-            return new DtoConversion(conversionDate, fromCurrency, originalAmount, toCurrency, conversionRate * originalAmount);
+            var convertedAmount = await _repository.GetConvertedAmountAsync(fromCurrency, originalAmount, toCurrency, conversionDate);
+            return new DtoConversion(conversionDate, fromCurrency, originalAmount, toCurrency, convertedAmount);
         }
     }
 }

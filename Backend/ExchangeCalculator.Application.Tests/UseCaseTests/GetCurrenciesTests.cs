@@ -1,4 +1,3 @@
-using ExchangeCalculator.Application.Interfaces;
 using ExchangeCalculator.Application.UseCases;
 using ExchangeCalculator.ServiceWrapper.Repositories;
 using Xunit;
@@ -17,7 +16,7 @@ namespace ExchangeCalculator.Application.Tests.UseCaseTests
         [Fact]
         public void CanGetCurrencies()
         {
-            const int expectedCount = 20;
+            const int expectedCount = 29;
 
             var currencies = _useCase.Execute();
 

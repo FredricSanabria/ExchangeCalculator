@@ -1,3 +1,5 @@
+using ExchangeCalculator.Application.Interfaces;
+using ExchangeCalculator.ServiceWrapper.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +33,7 @@ namespace ExchangeCalculator.WebApi
                 });
             });
 
-            // TODO: dependency injection
-            //services.AddTransient<IStrangefruitReadRepository, StrangefruitRepository>();
+            services.AddTransient<ISweaRepository, SweaServiceRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,8 +43,8 @@ namespace ExchangeCalculator.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(ReactAppOrigins);
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

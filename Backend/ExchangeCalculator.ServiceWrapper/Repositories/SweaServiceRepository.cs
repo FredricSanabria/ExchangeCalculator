@@ -20,26 +20,23 @@ namespace ExchangeCalculator.ServiceWrapper.Repositories
             var currencies = JsonConvert.DeserializeObject<List<Currency>>(CurrenciesJson.GetString());
             return includeObsolete
                 ? currencies
-                : currencies.Where(c => c.DateTo != null).ToList();
+                : currencies.Where(c => c.DateTo == null).ToList();
         }
 
         public async Task<decimal> GetConvertedAmountAsync(string fromCurrency, decimal originalAmount, string toCurrency, DateTime conversionDate)
-        {
-            var conversionRate = await GetConversionRateAsync(fromCurrency, toCurrency, conversionDate);
-            return conversionRate * originalAmount;
-        }
-
-        public async Task<decimal> GetConversionRateAsync(string fromCurrency, string toCurrency, DateTime conversionDate)
         {
             if (conversionDate.Date > DateTime.Today)
                 throw new InvalidDateException($"{conversionDate.ToSwedishDateString()} is a future date.");
 
             if (fromCurrency == toCurrency)
-            {
-                const decimal conversionRate = 1M;
-                return conversionRate;
-            }
+                return originalAmount;
 
+            var conversionRate = await GetConversionRateAsync(fromCurrency, toCurrency, conversionDate);
+            return conversionRate * originalAmount;
+        }
+
+        private async Task<decimal> GetConversionRateAsync(string fromCurrency, string toCurrency, DateTime conversionDate)
+        {
             var serviceResponse = await CallSweaForCrossRate(fromCurrency, toCurrency, conversionDate);
 
             return CrossRateConversionResponseHelper.GetConversionRateFromServiceResponse(serviceResponse, fromCurrency, toCurrency, conversionDate);

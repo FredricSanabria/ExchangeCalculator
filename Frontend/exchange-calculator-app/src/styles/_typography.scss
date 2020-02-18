@@ -1,0 +1,16 @@
+body {
+    background-color: $color-secondary-light;
+    color: $color-primary-dark;
+    font-family: $font-text;   
+    font-weight: 400;
+    font-size: 1.6rem; 
+}
+
+.heading-1 {
+    @extend %heading;
+    color: $color-primary-light;
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: 0.4rem;
+    margin: 1.5rem 1.5rem 2.5rem 1.5rem;
+}

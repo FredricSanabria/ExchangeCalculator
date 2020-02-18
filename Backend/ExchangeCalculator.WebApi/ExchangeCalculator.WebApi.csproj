@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ExchangeCalculator.Application\ExchangeCalculator.Application.csproj" />
+    <ProjectReference Include="..\ExchangeCalculator.ServiceWrapper\ExchangeCalculator.ServiceWrapper.csproj" />
   </ItemGroup>
 
 

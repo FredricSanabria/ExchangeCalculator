@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
-
+import Converter from './components/converter/converter';
 
 function App() {  
   return (
     <div>
+      <h1 className="heading-1">
+        Exchange calculator
+      </h1>
+      <Converter />
     </div>
   );
 }
